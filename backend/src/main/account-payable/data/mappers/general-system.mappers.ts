@@ -1,0 +1,53 @@
+import { GeneralSystemEntity } from "@src/main/account-payable/domain/entities/general-system.entity";
+import { GeneralSystemModel } from "@src/main/account-payable/data/models/general-system.model";
+
+export class GeneralSystemMapper {
+  static toEntity(model: GeneralSystemModel): GeneralSystemEntity {
+    return new GeneralSystemEntity(
+      model.isDeleted,
+      model.tableType,
+      model.tableCode.trim(),
+      model.tableDesc.trim(),
+      model.netDays,
+      model.proxDays,
+      model.discount,
+      model.rackPriceAddOn,
+      model.discountDays,
+      model.priceListGroup,
+      model.priceListColumn,
+      model.groupHeading,
+      model.columnHeading,
+      model.productGroupCode,
+      model.customerRankingColumnNo,
+      model.rackColumn,
+      model.inventoryColumn,
+      model.shippingDescription,
+      model.productClassCode,
+      model.salesmanType,
+      model.specialMsgDKG,
+      model.stdApiGravity,
+      model.inventoryGroupCode,
+      model.salesGlNo,
+      model.shortDescription,
+      model.sellProduct,
+      model.inventoryCompSeq,
+      model.defaultAltProductDesc,
+      model.inventoryCompSort,
+      model.containerTypeBP,
+      model.freightTableCode,
+      model.termPt2NetDays,
+      model.termPt3NetDays,
+      model.termsPart1Pct,
+      model.termsPart2Pct,
+      model.termsPart3Pct,
+      model.unitTypeBBlnd,
+      model.secondDescription,
+      model.einNumber,
+      model.vcfCode,
+      model.fluidCode,
+      model.terminalIoCode,
+      model.codeLength,
+      model.alphaNumeric,
+    );
+  }
+}

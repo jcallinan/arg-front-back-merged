@@ -1,0 +1,64 @@
+@use "@assets/styles/mixins" as *;
+@use "@assets/styles/variables.light" as var;
+@use "@assets/styles/mixins" as *;
+@use "@assets/styles/index.scss" as *;
+.report-filter-grid {
+  display: grid;
+  grid-template-columns: 30% 25% 25% auto;
+  gap: 16px;
+  align-items: end;
+  width: 100%;
+
+  .ant-select,
+  .ant-picker,
+  .custom-input,
+  .company-dropdown-cn {
+    width: 100% !important;
+  }
+
+  .button-wrapper,
+  .icon-wrapper {
+    display: flex;
+    align-items: end;
+  }
+ 
+  .button-icon-group {
+    display: flex;
+    align-items: end;
+    gap: 8px; /* Smaller gap between button and icon */
+    justify-content: flex-start;
+    align-self: end; /* Align to bottom of grid cell */
+  }
+ 
+  // Fix alignment issue when validation errors appear
+  & > div:not(.button-icon-group) {
+    min-height: 50px; /* Reserve space for error messages */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+ 
+  .error-messages {
+     color: var.$alert-error;
+    height: 18px; /* Fixed height for error message space */
+    margin-top: 4px;
+  }
+ 
+  @include small-desktop {
+    grid-template-columns: 25% 20% 20% 1fr;
+    gap: 12px;
+  }
+ 
+  @include tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    .button-wrapper,
+    .icon-wrapper {
+      justify-content: flex-start;
+    }
+  }
+}
+

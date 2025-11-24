@@ -1,0 +1,29 @@
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.form-field {
+  width: 100%; 
+}
+
+.form-field .ant-select,
+.form-field .ant-select-selector,
+.full-width-dropdown .ant-select,
+.full-width-dropdown .ant-select-selector {
+  width: 100% !important; 
+  min-width: 100% !important; 
+}
+
+.form-field input {
+  width: 100%;
+}

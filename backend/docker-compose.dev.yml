@@ -1,0 +1,58 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - "6379:6379"
+
+  upload-worker:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: dev
+    environment:
+      - APP_MODE=upload-worker
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+    deploy:
+      replicas: 1
+
+  arg-backend:
+    image: "arg-backend:dev"
+    container_name: "arg-backend"
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: dev
+      args:
+        - DB_SYSTEM=${DB_SYSTEM}
+        - DB_USERNAME=${DB_USERNAME}
+        - DB_PASSWORD=${DB_PASSWORD}
+        # - DB_DEFAULT_LIBRARIES=${DB_DEFAULT_LIBRARIES}
+        - DB_DEFAULT_PKG_LIBRARY=${DB_DEFAULT_PKG_LIBRARY}
+        - DB_DEFAULT_PACKAGE=${DB_DEFAULT_PACKAGE}
+    volumes:
+      - .:/workspace
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=dev
+      - DB_DSN=DSN=AS400DB
+      - DB_CONNECTION_TIMEOUT=10
+      - DB_DATA_LIB_DEV=${DB_DATA_LIB_DEV}
+      - DB_WORK_DATA_LIB_DEV=${DB_WORK_DATA_LIB_DEV}
+      - DB_SP_LIB_DEV=${DB_SP_LIB_DEV}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CONTAINER_UID=1000
+      - CONTAINER_GID=1000
+    depends_on:
+      - redis
+    tty: true
+    stdin_open: true
+    command: bash -c "npm install && tail -f /dev/null"

@@ -1,0 +1,154 @@
+@use "@assets/styles/variables.light" as var;
+
+.section-block {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.cards-containers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 10px;
+}
+
+.half-width {
+  flex: 1 1 45%;
+  max-width: 50%;
+}
+
+.add-vendor-owner-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .card {
+    width: 100% !important;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.company-dropdown-cn {
+  width: 100%;
+
+  .ant-select {
+    width: 100% !important;
+  }
+}
+
+.vendor-name-wrapper {
+  width: 100%;
+}
+
+.input-item .ant-select,
+.input-item .ant-input,
+.vendor-input-container .ant-select {
+  width: 100% !important;
+}
+
+.add-vendor-owner-wrapper {
+  .ant-select,
+  .ant-input,
+  .ant-input-affix-wrapper {
+    width: 100% !important;
+  }
+}
+
+.modal-divider {
+  margin: 0 0 16px;
+}
+
+.vendor-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  align-items: end;
+}
+
+.vendor-input-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  .ant-select {
+    width: 100% !important;
+  }
+}
+
+.active-switch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.active-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var.$text-color-primary;
+}
+
+.add-vendor-owner-modal {
+  .ant-modal-content {
+    width: 761px !important;
+    border-bottom-width: 1px;
+    gap: 10px;
+    opacity: 1;
+    border-radius: 6px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .ant-modal-body {
+    padding: 0;
+  }
+}
+
+.cards-container-vendor-master {
+  margin-bottom: 24px !important;
+}
+
+.title {
+  margin-bottom: 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var.$text-color-primary;
+}
+
+.table-responsive-container {
+  margin-top: 24px;
+}
+.company-dropdown-inquiry{
+  width: 353px;
+}

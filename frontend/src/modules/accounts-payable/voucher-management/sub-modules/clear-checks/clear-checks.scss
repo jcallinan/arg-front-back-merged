@@ -1,0 +1,24 @@
+@use "@assets/styles/variables.light" as var;
+
+.clear-checks-cards {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+
+  > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.add-check-modal {
+  width: 413px !important;
+
+  .ant-modal-content {
+    width: 413px;
+  }
+
+  .ant-modal-footer {
+    display: none !important;
+  }
+}

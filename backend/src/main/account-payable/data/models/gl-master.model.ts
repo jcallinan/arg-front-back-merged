@@ -1,0 +1,70 @@
+import { Model, Sequelize } from "@sequelize/core";
+import { glMasterSchema } from "../schemas/schema";
+import { initializeModel } from "@src/shared/config/model-initializer";
+
+// Define the glmast model class
+export class GlMasterModel extends Model {
+  public isDeleted!: string;
+  public companyNo!: number;
+  public accountNo!: number;
+  public subAccountNo!: number;
+  public accountType!: string;
+  public description!: string;
+  public accountCategory!: string;
+  public statementType!: string;
+  public statementLine!: number;
+  public drBalanceForward!: number;
+  public crBalanceForward!: number;
+  public drMonth01!: number;
+  public drMonth02!: number;
+  public drMonth03!: number;
+  public drMonth04!: number;
+  public drMonth05!: number;
+  public drMonth06!: number;
+  public drMonth07!: number;
+  public drMonth08!: number;
+  public drMonth09!: number;
+  public drMonth10!: number;
+  public drMonth11!: number;
+  public drMonth12!: number;
+  public crMonth01!: number;
+  public crMonth02!: number;
+  public crMonth03!: number;
+  public crMonth04!: number;
+  public crMonth05!: number;
+  public crMonth06!: number;
+  public crMonth07!: number;
+  public crMonth08!: number;
+  public crMonth09!: number;
+  public crMonth10!: number;
+  public crMonth11!: number;
+  public crMonth12!: number;
+  public supSched2Type!: string;
+  public supSched2Line!: number;
+  public consSupSched2Line!: number;
+  public supSched3Type!: string;
+  public supSched3Dept!: number;
+  public supSched3Line!: number;
+  public consSupSched3Line!: number;
+  public filler!: string;
+  public specialAccount!: string;
+  public keyApGal!: string;
+  public productCode!: string;
+  public glType!: string;
+  public secondStmtType!: string;
+  public secondStmtLine!: number;
+  public secondConsStmtLine!: number;
+  public consolidatedGroup!: number;
+  public poRequired!: string;
+  public supSchedGroup!: number;
+  public suppSchedType!: string;
+  public suppSchedLine!: number;
+  public consolidatedLine!: number;
+  public consSupSchLine!: number;
+  public column!: number;
+  public unitCode!: string;
+}
+
+export function initializeGlMaster(sequelize: Sequelize): void {
+  initializeModel(sequelize, GlMasterModel, "GlMaster", glMasterSchema);
+}

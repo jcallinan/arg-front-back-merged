@@ -1,0 +1,105 @@
+@use "@assets/styles/mixins" as *;
+@use "@assets/styles/variables.light" as var;
+
+.payment-form {
+  .form-section {
+    margin-bottom: 24px;
+  }
+
+  .bordered-box {
+    border: 1px solid var.$pagination-border;
+    padding: 16px;
+    border-radius: 6px;
+
+    &.payment-type-error {
+      border-color: var.$alert-error;
+      border-width: 2px;
+    }
+  }
+  
+  .horizonatl-line {
+    border: none;
+    border-top: 1px solid var.$pagination-border;
+    margin: 8px 0;
+  }
+  
+  .divider-color {
+    border-top: 1px solid var.$pagination-border;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    align-items: start; 
+    
+    .form-group:nth-child(5),
+    .form-group:nth-child(6),
+    .form-group:nth-child(7),
+    .form-group:nth-child(8) {
+      margin-left: 7px;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    .char-count {
+      font-size: 10px;
+      margin-top: 2px;
+      text-align: right;
+    }
+
+    &.textarea-span {
+      grid-column: span 1;
+    }
+
+    &.switch-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+
+      label {
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+
+      .ant-switch {
+        margin-left: 0; 
+      }
+    }
+
+    .dropdown-wrapper {
+      width: 100%;
+      margin-top: -6px;
+      
+      .ant-select,
+      .ant-select-selector {
+        width: 100% !important;
+      }
+    }
+
+    .ant-input,
+    .ant-select-selector,
+    .ant-picker {
+      min-height: 32px;
+    }
+  }
+}
+
+.button-position {
+  margin-top: 4px;
+}
+
+.payment-type-display {
+  .voucher-section {
+    .field-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+  }
+      
+}

@@ -1,0 +1,40 @@
+@use "@assets/styles/variables.light" as var;
+
+.update-1099-modal {
+  .card-grid-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  .modal-edit-footer {
+    margin-top: 16px;
+  }
+
+  .form-section-layout {
+    margin-bottom: 16px;
+  }
+
+  .field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .sub-title {
+      margin-bottom: 4px;
+    }
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+
+  .gap-16 {
+    gap: 16px;
+  }
+}

@@ -1,0 +1,49 @@
+@use "@assets/styles/mixins" as *;
+.arg-entries-div {
+   margin: 2px 0px;
+}
+
+.card-row {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 16px;
+
+   .card-company-name,
+   .card-company-number,
+   .card-selected-total {
+      width: 100%; // default: mobile
+   }
+
+   @include tablet {
+      .card-company-name {
+         width: 100%;
+      }
+
+      .card-company-number,
+      .card-selected-total {
+         width: calc(50% - 8px); // half width side by side
+      }
+   }
+
+   @include small-desktop {
+      .card-company-name {
+         width: 471px;
+      }
+
+      .card-company-number,
+      .card-selected-total {
+         width: 265px;
+      }
+   }
+
+   @include large-desktop {
+      .card-company-name {
+         width: 50%;
+      }
+
+      .card-company-number,
+      .card-selected-total {
+         width: 265px;
+      }
+   }
+}

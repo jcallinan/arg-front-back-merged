@@ -1,0 +1,102 @@
+{
+    "name": "ARG Backend Dev Container",
+    "dockerComposeFile": "../docker-compose.dev.yml",
+    "service": "arg-backend",
+    "workspaceFolder": "/workspace",
+    // Features to add to the dev container
+    "features": {
+        // Only keep minimal features - everything else is already in Dockerfile
+    },
+    // VS Code settings for the container
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.cwd": "/workspace",
+                "files.watcherExclude": {
+                    "**/node_modules/**": true,
+                    "**/dist/**": true
+                },
+                "search.exclude": {
+                    "**/node_modules": true,
+                    "**/dist": true
+                },
+                "typescript.preferences.importModuleSpecifier": "relative",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": "explicit"
+                },
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "editor.tabSize": 2,
+                "editor.insertSpaces": true,
+                "files.eol": "\n",
+                "typescript.updateImportsOnFileMove.enabled": "always",
+                "javascript.updateImportsOnFileMove.enabled": "always",
+                "eslint.workingDirectories": [
+                    "/workspace"
+                ],
+                "eslint.validate": [
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact"
+                ]
+            },
+            // Extensions to install
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-next",
+                "dbaeumer.vscode-eslint",
+                "streetsidesoftware.code-spell-checker",
+                "ms-vscode.vscode-json",
+                "redhat.vscode-yaml",
+                "ms-vscode-remote.remote-containers",
+                "ms-vscode.remote-explorer",
+                "formulahendry.auto-rename-tag",
+                "christian-kohler.path-intellisense",
+                "ms-vscode.vscode-jest",
+                "humao.rest-client",
+                "rangav.vscode-thunder-client",
+                "ms-vscode.vscode-docker",
+                "ms-vscode.vscode-nestjs-snippets",
+                "angular.ng-template"
+            ]
+        }
+    },
+    // Forward ports
+    "forwardPorts": [
+        5001,
+        6379
+    ],
+    "portsAttributes": {
+        "5001": {
+            "label": "ARG Backend API",
+            "onAutoForward": "notify"
+        },
+        "6379": {
+            "label": "Redis",
+            "onAutoForward": "silent"
+        }
+    },
+    // Lifecycle scripts
+    "postCreateCommand": "echo '🚀 ARG Backend Dev Container Ready!'",
+    "postStartCommand": "echo '✅ Container started - run yarn start:dev to begin!'",
+    // Container user
+    "remoteUser": "node",
+    "containerUser": "node",
+    // Mount the Docker socket for Docker-in-Docker scenarios
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    // Environment variables for development
+    "remoteEnv": {
+        "NODE_ENV": "dev",
+        "TERM": "xterm-256color"
+    },
+    // Configure VS Code to use the workspace folder
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    // Development server commands
+    "otherPortsAttributes": {
+        "onAutoForward": "silent"
+    }
+}

@@ -1,0 +1,8 @@
+[AS400DB]
+Description             = IBM i Access ODBC Driver
+Driver                  = IBM i Access ODBC Driver
+System                  = ${DB_SYSTEM}
+UserID                  = ${DB_USERNAME}
+Password                = ${DB_PASSWORD}
+DefaultPkgLibrary       = ${DB_DEFAULT_PKG_LIBRARY}
+DefaultPackage          = ${DB_DEFAULT_PACKAGE} 

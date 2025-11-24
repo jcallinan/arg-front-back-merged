@@ -1,0 +1,35 @@
+# 🛑 Node.js dependencies
+node_modules/
+npm-debug.log*
+package-lock.json
+yarn.lock
+.DS_Store
+# ⚙️ Environment Variables
+.env*
+*.env*
+
+# 🔨 Build & Generated Files
+dist/
+build/
+
+
+# 🔥 Logs & Debugging
+logs/
+
+
+
+# 🔧 IDE & Editor Files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.swp
+*.bak
+*.tmp
+
+#test coverage
+coverage/
+
+#SCRIPTS
+# scripts/

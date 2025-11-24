@@ -1,0 +1,6 @@
+{
+  "name": "@arg/api-types",
+  "version": "1.0.0",
+  "main": "api.ts",
+  "types": "api.ts"
+} 

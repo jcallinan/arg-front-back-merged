@@ -1,0 +1,64 @@
+@use "@assets/styles/mixins" as *;
+@use "@assets/styles/mixins" as *;
+@use "@assets/styles/variables.light" as var;
+
+.filter-grids-employee {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 24px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.filter-field-employoee {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .sub-title {
+    font-size: 14px;
+    font-weight: 500;
+    //color: var.$black-background;
+    margin-bottom: 4px;
+  }
+
+  .ui-dropdown-cn,
+  .ant-select,
+  .ant-picker,
+  .ant-input {
+    width: 100% !important;
+  }
+
+  .validation-indicator {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 4px;
+    opacity: 0.8;
+  }
+}
+
+.content-card-header {
+  .filter-actions {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 22px;
+
+    .custom-styled-button {
+      white-space: nowrap;
+    }
+  }
+
+  .filter-item {
+    .input-wrapper {
+      .ui-dropdown-vnn.ant-picker {
+        width: 345px !important;
+      }
+    }
+  }
+}

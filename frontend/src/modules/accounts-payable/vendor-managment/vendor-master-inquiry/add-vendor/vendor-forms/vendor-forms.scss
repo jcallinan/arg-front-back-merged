@@ -1,0 +1,73 @@
+.vendor-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .row {
+    display: flex;
+    gap: 16px;
+
+    &.first-row {
+      .vendor-no {
+        flex: 2.45;
+      }
+
+      .vendor-name {
+        flex: 3.5;
+      }
+      .vendor-name-overflow {
+        flex: 1;
+       
+      }
+    }
+
+    &.second-row {
+      > div {
+        flex: 1;
+      }
+    }
+
+    &.third-row {
+      > div {
+        flex: 1;
+      }
+    }
+  }
+
+  .form-field {
+    min-width: 0;
+
+    input,
+    .ant-select {
+      width: 100%;
+    }
+  }
+}
+
+
+.active-toggle-container {
+   display: flex;
+   align-items: center;
+   justify-content: flex-end; 
+   margin-top: 1rem; 
+   gap: 0.5rem;      
+}
+
+.cards-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  .card-left,
+  .card-right {
+    flex: 1; 
+  }
+
+  .active-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap; 
+  }
+}

@@ -1,0 +1,113 @@
+@use "@assets/styles/variables.light" as var;
+
+.login-container {
+   height: 100vh;
+   width: 100vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-image: url("@assets/images/login-screen-backrground.svg");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   font-family: Roboto, sans-serif;
+
+   .login-card {
+      background-color: var.$primary-background-color;
+      width: 392px;
+      color: var.$text-color-primary;
+      border-radius: 10px;
+      padding: 40px;
+      border: 1px solid var.$gray-border-light;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 20px;
+      opacity: 1;
+
+      .logo-container {
+         display: flex;
+         justify-content: center;
+         margin-bottom: 8px;
+
+         .logo {
+            width: 124px;
+            height: 38px;
+            opacity: 1;
+         }
+      }
+
+      .login-title {
+         text-align: center;
+         color: var.$text-color-primary;
+         font-weight: 600;
+         font-size: 18px;
+         line-height: 24px;
+      }
+
+      .login-form {
+         display: flex;
+         flex-direction: column;
+         gap: 12px;
+         align-items: center;
+
+         .field-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .field-label {
+               margin-bottom: 4px;
+            }
+         }
+
+         .remember-me-container {
+            display: flex;
+            align-items: center;
+
+            .ant-checkbox-wrapper {
+               color: var.$text-color-primary;
+            }
+         }
+
+         .button-container {
+            margin-top: 0;
+         }
+      }
+
+
+      .login-button,
+      .ant-btn-primary {
+         width: 100%;
+         height: 40px;
+         background-color: var.$login-button-color !important;
+         border-color: var.$login-button-color !important;
+         color: var.$text-color-light !important;
+         font-weight: 600;
+         font-size: 14px;
+         border-radius: 4px;
+         margin-bottom: 8px;
+
+         &:hover {
+            background-color: var.$login-button-hover-color !important;
+            border-color: var.$login-button-hover-color !important;
+            color: var.$text-color-light !important;
+         }
+
+         &.ant-btn-loading {
+            background-color: var.$login-button-color !important;
+            border-color: var.$login-button-color !important;
+         }
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+         -webkit-box-shadow: 0 0 0 30px var.$primary-background-color inset !important;
+         -webkit-text-fill-color: var.$text-color-primary !important;
+         background-color: var.$primary-background-color !important;
+      }
+
+   }
+}

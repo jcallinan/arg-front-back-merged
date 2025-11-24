@@ -1,0 +1,47 @@
+# 🔹 Common backend config (reused across dev/test/uat)
+x-common-backend: &common-backend
+  platform: linux/amd64
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+    target: dev
+  working_dir: /workspace
+  volumes:
+    - .:/workspace
+    - node_modules:/workspace/node_modules
+  tty: true
+  stdin_open: true
+  depends_on:
+    - redis
+  restart: unless-stopped
+
+services:
+  # Redis (shared across environments)
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # ---------------- DEV ----------------
+  arg-backend-dev:
+    <<: *common-backend
+    container_name: arg-backend-dev
+    ports:
+      - 5001:5001
+       # debugging port
+      - 9229:9229
+    env_file:
+      - ${ENV_FILE:-.env.dev}
+
+  upload-worker-dev:
+    <<: *common-backend
+    container_name: upload-worker-dev
+    env_file:
+      - ${ENV_FILE:-.env.dev}
+    deploy:
+      replicas: 1
+
+volumes:
+  node_modules:

@@ -1,0 +1,58 @@
+@use "@assets/styles/variables.light" as var;
+
+.EntryPage-container {
+   padding: 16px;
+   height: calc(100vh - 64px);
+   overflow:auto;
+   .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+      gap: 1rem;
+      text-align: center;
+   }
+
+   .entrypage-card {
+      background-color: var.$primary-background-color;
+      border: 1px solid var.$card-border;
+      border-radius: 8px;
+      padding: 20px 16px;
+      cursor: pointer;
+
+      .ap-card-description {
+         color: var.$text-color-secondary;
+      }
+
+      &:hover {
+         background: var.$box-hover;
+          border: 1px solid var.$primary-red;
+
+         .icon span {
+            background-color: var.$primary-background-color;
+            border: 2px solid var.$primary-red;
+         }
+         
+      }
+      .icon {
+         font-size: 1.5rem;
+         margin-bottom: 6px;
+        
+
+         span {
+            color: var.$primary-red;
+            background-color: var.$selected-li-background;
+            height: 54px;
+            width: 54px;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid transparent;
+         }
+      }
+   }
+}
+
+.ap-card-title {
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 24px;
+   text-align: center;
+}

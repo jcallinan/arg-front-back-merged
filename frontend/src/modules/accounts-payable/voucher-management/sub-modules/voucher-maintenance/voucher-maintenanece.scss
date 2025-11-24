@@ -1,0 +1,302 @@
+@use "@assets/styles/mixins" as *;
+@use "@assets//styles/variables.light" as var;
+@use "@assets/styles/index.scss" as *;
+
+.filter-grids-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1.3fr 0.8fr 0.8fr 0.8fr auto auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 24px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .error-messages {
+      min-height: 18px;
+      font-size: 12px;
+    }
+  }
+
+  .sub-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var.$black-background;
+    margin-bottom: 4px;
+
+    @include mobile {
+      font-size: 13px;
+    }
+  }
+
+  .ui-dropdown-cn,
+  .ui-dropdown-vnn,
+  .ant-select,
+  .ant-picker,
+  .ant-input {
+    width: 100% !important;
+  }
+
+  @include mobile {
+    margin-bottom: 16px;
+  }
+}
+
+.btn-field {
+  // display: flex;
+  //justify-content: flex-end;
+  //align-items: end;
+
+  button,
+  .ant-btn {
+    width: auto !important;
+    min-width: 100px;
+  }
+
+  @include mobile {
+    width: 100%;
+
+    button,
+    .ant-btn {
+      width: 100% !important;
+      min-width: unset;
+    }
+  }
+}
+
+.sync-field {
+  margin-top: 22px; // Match the height of sub-title to align with other fields
+
+  .action-icon {
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    @include mobile {
+      height: 32px;
+      width: 32px;
+      font-size: 14px;
+      margin-top: 0;
+    }
+  }
+
+  @include mobile {
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.voucher-status-modal {
+  .ant-modal-content {
+    width: 855px !important;
+    min-height: 428px !important;
+    max-width: unset;
+    padding: 24px;
+    box-sizing: border-box;
+    left: -100px;
+
+    @include mobile {
+      width: 95vw !important;
+      left: 0;
+      margin: 0 auto;
+    }
+  }
+
+  .ant-modal-body {
+    padding: 0;
+  }
+}
+
+.vendor-details-container {
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+
+    .single-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+
+      @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+.voucher-modal {
+  width: 100%;
+
+  .voucher-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .grid-item.quarter {
+      grid-column: span 1;
+    }
+
+    .grid-item.three-quarter {
+      grid-column: span 3;
+    }
+  }
+
+  .voucher-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .status-dropdown {
+        max-width: 300px;
+      }
+    }
+  }
+}
+
+.voucher-discount-modal-content {
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+
+    > div {
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+
+      .ant-input,
+      .ant-select,
+      .ant-picker,
+      .ui-dropdown-cn {
+        width: 250px !important;
+      }
+    }
+
+    @include mobile {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      > div {
+        width: 100%;
+
+        .ant-input,
+        .ant-select,
+        .ant-picker,
+        .ui-dropdown-cn {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+
+// Responsive table container
+.table-responsive-container {
+  @include mobile {
+    overflow-x: auto;
+
+    .ant-table {
+      min-width: 600px;
+    }
+  }
+}
+
+// Responsive content containers
+.content-div-container {
+  @include mobile {
+    padding: 0 8px;
+  }
+}
+
+.content-card-body {
+  @include mobile {
+    padding: 16px 8px;
+  }
+}
+
+// Responsive titles
+h4,
+h5 {
+  @include mobile {
+    font-size: 18px;
+    margin: 16px 8px;
+  }
+}
+
+// Responsive voucher modal
+.voucher-modal {
+  @include mobile {
+    .voucher-form-section {
+      .form-row {
+        gap: 0.75rem;
+      }
+    }
+  }
+}
+
+// Responsive action icons
+.action-icons {
+  @include mobile {
+    gap: 8px;
+
+    .action-icon {
+      font-size: 14px;
+      padding: 6px;
+    }
+  }
+}
+
+// Responsive status pills
+.status-pill {
+  @include mobile {
+    font-size: 11px;
+    padding: 2px 6px;
+    min-width: 60px;
+    text-align: center;
+  }
+}

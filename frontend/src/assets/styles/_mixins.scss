@@ -1,0 +1,127 @@
+// Mixins file - no need to import itself
+@use "../styles/variables.light" as var;
+
+@mixin mobile {
+  @media (max-width: 479px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 480px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin small-desktop {
+  @media (min-width: 1025px) and (max-width: 1599px) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin hover-dark {
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
+}
+
+@mixin common-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var.$gray-dark;
+  color: var.$text-color-light;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  transition: opacity 0.2s ease-in-out;
+}
+
+@mixin table-cell-base {
+  padding: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var.$text-color-primary;
+  border-bottom: 1px solid var.$gray-border-light;
+  max-width: 200px;
+
+  &[title] {
+    cursor: help;
+  }
+}
+
+@mixin table-header-cell {
+  @include table-cell-base;
+  font-family: Font/Heading-Font;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+
+  @include mobile {
+    font-size: 12px;
+    padding: 12px;
+    max-width: 150px;
+  }
+
+  @include tablet {
+    font-size: 13px;
+    padding: 10px;
+    max-width: 180px;
+  }
+}
+
+@mixin table-body-cell {
+  @include table-cell-base;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+
+  @include mobile {
+    font-size: 12px;
+    padding: 8px;
+    max-width: 150px;
+  }
+
+  @include tablet {
+    font-size: 13px;
+    padding: 10px;
+    max-width: 180px;
+  }
+}
+@mixin responsive-grid($default, $tablet, $mobile) {
+  display: grid;
+  grid-template-columns: repeat($default, 1fr);
+  gap: 16px;
+
+  @include mobile {
+    grid-template-columns: repeat($mobile, 1fr);
+  }
+
+  @include tablet {
+    grid-template-columns: repeat($tablet, 1fr);
+  }
+
+  @include small-desktop {
+    grid-template-columns: repeat($default, 1fr);
+  }
+
+  @include large-desktop {
+    grid-template-columns: repeat($default, 1fr);
+  }
+}
