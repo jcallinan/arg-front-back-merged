@@ -1,10 +1,10 @@
 services:
   redis:
     image: redis:latest
-    container_name: redis-container
+    container_name: redis-auth-container
     restart: always
     ports:
-      - "6379:6379"
+      - "6380:6379"
 
   upload-worker:
     platform: linux/amd64
@@ -23,7 +23,7 @@ services:
 
   arg-backend:
     image: "arg-backend:dev"
-    container_name: "arg-backend"
+    container_name: "arg-auth-backend"
     platform: linux/amd64
     build:
       context: .
@@ -56,4 +56,3 @@ services:
     tty: true
     stdin_open: true
     command: bash -c "npm install && tail -f /dev/null"
-

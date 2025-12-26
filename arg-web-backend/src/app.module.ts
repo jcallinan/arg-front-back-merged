@@ -3,9 +3,9 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 import { BullModule } from "@nestjs/bull";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { WebsocketModule } from "@src/shared/websocket/websocket.module";
-import { redis_connection } from "@src/shared/queue/bullmq-connection";
+
 import { AccountPayableModule } from "./main/account-payable/account-payable.module";
 import { GlobalStatesModule } from "./main/global-states/global-states.module";
 import { CacheModule } from "./shared/cache/cache.module";
@@ -25,8 +25,17 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     AccountPayableModule,
     GlobalStatesModule,
-    BullModule.forRoot({
-      redis: redis_connection,
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        redis: {
+          host: configService.get('REDIS_HOST') || 'localhost',
+          port: configService.get('REDIS_PORT') || 6379,
+          password: configService.get('REDIS_PASSWORD'),
+          db: configService.get('REDIS_DB'),
+        },
+      }),
+      inject: [ConfigService],
     }),
     WebsocketModule,
   ],

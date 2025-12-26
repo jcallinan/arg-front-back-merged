@@ -1,4 +1,5 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import Redis from "ioredis";
 import { AppLogger } from "../logger/logger.service";
 import { cacheConfig } from "./cache.config";
@@ -10,6 +11,8 @@ export class CacheService implements OnModuleInit, OnModuleDestroy {
   private redis!: Redis;
   private isConnected = false;
 
+  constructor(private configService: ConfigService) { }
+
   async onModuleInit() {
     await this.initializeRedis();
   }
@@ -20,11 +23,19 @@ export class CacheService implements OnModuleInit, OnModuleDestroy {
 
   private async initializeRedis(): Promise<void> {
     try {
+      const host = this.configService.get<string>('REDIS_HOST') || cacheConfig.host;
+      const port = this.configService.get<number>('REDIS_PORT') || cacheConfig.port;
+
+
+
+      const password = this.configService.get<string>('REDIS_PASSWORD') || cacheConfig.password;
+      const db = this.configService.get<number>('REDIS_DB') || cacheConfig.db;
+
       this.redis = new Redis({
-        host: cacheConfig.host,
-        port: cacheConfig.port,
-        password: cacheConfig.password,
-        db: cacheConfig.db,
+        host,
+        port,
+        password,
+        db,
         keyPrefix: cacheConfig.keyPrefix,
         connectTimeout: cacheConfig.connectTimeout,
         enableReadyCheck: cacheConfig.enableReadyCheck,
