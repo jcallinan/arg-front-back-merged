@@ -1,0 +1,60 @@
+# Use a Debian-based Node.js image
+FROM node:22-bullseye-slim AS base
+
+# Install required tools and libraries
+RUN apt-get update && apt-get install -y vim \
+    unixodbc-dev \
+    build-essential \
+    libodbc1 \
+    odbcinst \
+    curl \
+    git \
+    gettext \
+    lsof \
+    procps \
+    bash-completion \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable bash completion
+RUN echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
+
+# Set working directory
+WORKDIR /workspace
+
+# Copy package manifests first (for build cache)
+COPY package*.json ./
+
+# Install dependencies (production + dev)
+RUN npm install
+
+# Copy the rest of the source
+COPY . .
+
+# Global NestJS CLI
+RUN npm install -g @nestjs/cli
+
+ENV NODE_OPTIONS="--max-old-space-size=8192"
+
+# Set TERM environment variable
+ENV TERM=xterm-256color
+
+FROM base AS dev
+
+# Set up a script to dynamically create a user matching the host's UID and GID
+ARG USERNAME=node
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+# Ensure group and user creation does not fail if they already exist
+RUN getent group $USER_GID || groupadd --gid $USER_GID $USERNAME \
+    && id -u $USERNAME || useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo "$USERNAME ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+# Switch to the created user
+USER $USERNAME
+
+WORKDIR /workspace

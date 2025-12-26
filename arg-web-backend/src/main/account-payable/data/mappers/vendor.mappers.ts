@@ -1,0 +1,67 @@
+import { Vendor } from "../../domain/entities/vendor.entity";
+import { VendorModel } from "../models/vendor.model";
+
+// ModelToEntity
+export function vendorMapper(record: VendorModel): Vendor {
+  if (!record) {
+    throw new Error("Vendor record is null or undefined");
+  }
+
+  return Vendor.create({
+    vendorIsDeleted: record.vendorIsDeleted,
+    vendorCompanyNumber: record.vendorCompanyNumber,
+    vendorNo: record.vendorNo,
+    vendorName: record.vendorName,
+    vendorAdd1: record.vendorAdd1,
+    vendorAdd2: record.vendorAdd2,
+    vendorAdd3: record.vendorAdd3,
+    vendorAdd4: record.vendorAdd4,
+    vendorZipCode: record.vendorZipCode,
+    vendorExtraZip: record.vendorExtraZip,
+    vendorAlphaSortAbbr: record.vendorAlphaSortAbbr,
+    vendorAreaCode: record.vendorAreaCode === 0 ? undefined : record.vendorAreaCode,
+    vendorTelephoneNo: record.vendorTelephoneNo === 0 ? undefined : record.vendorTelephoneNo,
+    vendorLastPaymentAmt: record.vendorLastPaymentAmt,
+    vendorLastPaymentDate: record.vendorLastPaymentDate,
+    vendorYtdPurchases: record.vendorYtdPurchases,
+    vendorLastYearPurchases: record.vendorLastYearPurchases,
+    vendorMtdDiscounts: record.vendorMtdDiscounts,
+    vendorYtdDiscounts: record.vendorYtdDiscounts,
+    vendorNameOverflow: record.vendorNameOverflow,
+    vendorGalRcptsRequired: record.vendorGalRcptsRequired,
+    vendorFiller: record.vendorFiller,
+    vendorPreviousBalance: record.vendorPreviousBalance,
+    vendorMtdPurchases: record.vendorMtdPurchases,
+    vendorMtdPayments: record.vendorMtdPayments,
+    vendorCurrentBalance: record.vendorCurrentBalance,
+    vendorHoldPaymentsVend: record.vendorHoldPaymentsVend,
+    vendorSingleCheck: record.vendorSingleCheck,
+    vendorThisYrYtdPaid: record.vendorThisYrYtdPaid === 0 ? undefined : record.vendorThisYrYtdPaid,
+    vendorLastYrYtdPaid: record.vendorLastYrYtdPaid,
+    vendorExpenseGLSub: record.vendorExpenseGLSub,
+    vendorApTermsCode: record.vendorApTermsCode,
+    vendorAp1099Code: record.vendorAp1099Code,
+    vendorIdNumber: record.vendorIdNumber,
+    vendorFirst1099BoxNumber: record.vendorFirst1099BoxNumber,
+    vendorSecond1099BoxNumber: record.vendorSecond1099BoxNumber,
+    vendorSecond1099BoxAmount: record.vendorSecond1099BoxAmount,
+    vendorLastPaymentDateAlt: record.vendorLastPaymentDateAlt,
+    vendorCarrierId: record.vendorCarrierId,
+    vendorPayeeName1: record.vendorPayeeName1,
+    vendorPayeeName2: record.vendorPayeeName2,
+    vendorIrsNameControl: record.vendorIrsNameControl,
+    vendorAdpPayrollId: record.vendorAdpPayrollId,
+    vendorAchClass: record.vendorAchClass,
+    vendorAchCheckingOrSavings: record.vendorAchCheckingOrSavings,
+    vendorAchBankRoutingCode: record.vendorAchBankRoutingCode,
+    vendorAchBankAccountNumber: record.vendorAchBankAccountNumber,
+    vendorFirstName: record.vendorFirstName,
+    vendorMiddleName: record.vendorMiddleName,
+    vendorBusinessLastName: record.vendorBusinessLastName,
+    vendorNameSuffix: record.vendorNameSuffix,
+    vendorCountryCode: record.vendorCountryCode,
+    vendorCategoryCode: record.vendorCategoryCode,
+    vendorFiller2: record.vendorFiller2,
+    IdNo1099: record.IdNo1099,
+  });
+}

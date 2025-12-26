@@ -1,0 +1,49 @@
+$app-header-height: 64px;
+$app-header-margin: 10px;
+$sidebar-width: 60px;
+
+#root {
+   max-width: 1990px;
+   width: 100%;
+   margin: 0 auto;
+}
+
+.main-content {
+   margin-top: calc(#{$app-header-height});
+   margin-left: $sidebar-width;
+   height: calc(100vh - #{$app-header-height});
+   overflow: auto;
+}
+
+$app-header-height: 64px;
+$sidebar-width: 60px;
+
+.app-layout {
+   display: flex;
+   height: 100vh;
+   overflow: hidden;
+}
+
+.main-layout {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+   min-height: 100vh;
+}
+
+.main-content {
+   flex: 1;
+   margin-top: $app-header-height;
+   overflow: hidden;
+}
+
+// Modal utility center text styling
+.modal-center-text {
+   .modal-utiliy-title {
+      text-align: center;
+   }
+
+   .ant-modal-body > div {
+      text-align: center;
+   }
+}

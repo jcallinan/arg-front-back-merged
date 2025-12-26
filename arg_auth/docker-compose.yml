@@ -1,0 +1,39 @@
+# 🔹 Common backend config (reused across dev/test/uat)
+x-common-backend: &common-backend
+  platform: linux/amd64
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+    target: dev
+  working_dir: /workspace
+  volumes:
+    - .:/workspace
+    - node_modules:/workspace/node_modules
+  tty: true
+  stdin_open: true
+  depends_on:
+    - redis
+  restart: unless-stopped
+
+services:
+  # Redis (shared across environments)
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6380:6379"
+
+  # ---------------- DEV ----------------
+  arg-web-auth:
+    <<: *common-backend
+    container_name: arg-web-auth
+    ports:
+      - 8000:8000
+      # debugging port
+      - 9300:9300
+    environment:
+      - NODE_ENV=dev
+
+volumes:
+  node_modules:

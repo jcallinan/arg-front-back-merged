@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  prod_redis:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - "6379:6379"
+  backend:
+    image: argcicd.azurecr.io/dev/arg-web-backend:latest
+    container_name: my-nest-app
+    restart: always
+    depends_on:
+      - prod_redis
+    ports:
+      - "8000:8000"
+    volumes:
+      - /srv/samba/share/G-Drive:/srv/samba/share/G-Drive
+    environment:
+      # Application environment
+      - NODE_ENV=dev
+      - HOST=localhost
+      - PORT=8000
+      - APP_SERVER_IP=dev-damco.amref.com
+
+      # Database configuration (AS400 DB2)
+      - DB_USERNAME=CHOPRATEST
+      - DB_PASSWORD=CHOPRATEST
+      - DB_DSN=DSN=AS400DB
+      - DB_CONNECTION_TIMEOUT=60
+      - DB_SYSTEM=172.16.30.11
+      - DB_DEFAULT_LIBRARIES=QS36FTEST
+      - DB_DEFAULT_PKG_LIBRARY=QGPL
+      - DB_DEFAULT_PACKAGE=A/DEFAULT(IBM),2,0,1,0,512
+
+      # Library configuration
+      - DB_DATA_LIB_DEV=DATADEV
+      - DB_WORK_DATA_LIB_DEV=QS36FTEST
+      - DB_SP_LIB_DEV=GSSLIBDEV
+
+      - DB_DATA_LIB_TEST=DATATEST
+      - DB_WORK_DATA_LIB_TEST=QS36FTEST
+      - DB_SP_LIB_TEST=GSSLIB
+
+      - DB_DATA_LIB_UAT=DATAUAT
+      - DB_WORK_DATA_LIB_UAT=QS36FUAT
+      - DB_SP_LIB_UAT=GSSLIB
+
+      - DB_DATA_LIB_PROD=DATA
+      - DB_WORK_DATA_LIB_PROD=QS36FPROD
+      - DB_SP_LIB_PROD=GSSLIB
+
+      # Redis configuration
+      - REDIS_HOST=prod_redis
+      - REDIS_PORT=6379
+
+      # File configuration
+      - FILE_ROOTH_PATH=/srv/samba/share/G-Drive
+      - FILE_SERVE_ROOT=/G-Drive

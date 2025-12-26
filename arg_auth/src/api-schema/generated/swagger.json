@@ -1,0 +1,280 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/health-check": {
+      "get": {
+        "operationId": "AppController_healthCheck",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/app-dashboard": {
+      "get": {
+        "operationId": "AppController_getAppDashboard",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "description": "Frontend usage: api.auth.getUserDetails()",
+        "operationId": "getUserDetails",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get the User Details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "email": {
+                        "type": "string",
+                        "example": "Email"
+                      },
+                      "userDisplayName": {
+                        "type": "string",
+                        "example": "Kuldeep"
+                      },
+                      "userInitials": {
+                        "type": "string",
+                        "example": "KS"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get User Details (Method: getUserDetails)",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "description": "Frontend usage: api.auth.getLogout()",
+        "operationId": "getLogout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Logout user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully logout"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Logout User (Method: getLogout)",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/callback": {
+      "get": {
+        "description": "Frontend usage: api.auth.callback()",
+        "operationId": "callback",
+        "parameters": [
+          {
+            "name": "code",
+            "required": false,
+            "in": "query",
+            "description": "Microsoft Code",
+            "schema": {
+              "example": "abc",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of Reports Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "message": {
+                        "type": "Redirect",
+                        "example": "Redirect"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Set Cookie and Redirect (Method: callback)",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/token": {
+      "get": {
+        "description": "Frontend usage: api.auth.getToken()",
+        "operationId": "getToken",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Set the new Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "message": {
+                        "type": "Redirect",
+                        "example": "Token is generated"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get The Token (Method: getToken)",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth": {
+      "post": {
+        "description": "Frontend usage: api.auth.validateUser()",
+        "operationId": "validateUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "authData"
+                ],
+                "properties": {
+                  "authData": {
+                    "type": "object",
+                    "required": [
+                      "route"
+                    ],
+                    "properties": {
+                      "route": {
+                        "type": "string",
+                        "example": "N",
+                        "required": false
+                      },
+                      "method": {
+                        "type": "string",
+                        "example": "N",
+                        "required": false
+                      },
+                      "restApi": {
+                        "type": "boolean",
+                        "example": true,
+                        "required": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User Details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "email": {
+                        "type": "string",
+                        "example": "test@amref.com"
+                      },
+                      "extensionAttribute1": {
+                        "type": "string",
+                        "example": "TEST"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Authenticate and Authorize User (Method: validateUser)",
+        "tags": [
+          "auth"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "ARG API",
+    "description": "The ARG API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {}
+  }
+}
